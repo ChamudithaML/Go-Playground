@@ -1,12 +1,20 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"main/dbconfig"
+
+	"main/handlers"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	fmt.Println("hi")
+	app := fiber.New()
 
 	dbconfig.SetupDb()
+
+	handlers.SetupRoutes(app)
+
+	log.Fatal(app.Listen(":3000"))
 }
