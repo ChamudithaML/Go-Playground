@@ -40,6 +40,6 @@ func SetupDb() {
 	fmt.Println("Successfully connected to mongo cluster")
 
 	Client = client
-	DATABASE = client.Database("DATABASE_NAME")
+	DATABASE = client.Database("Game_Shop")
 
 }
