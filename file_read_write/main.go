@@ -16,6 +16,10 @@ func main() {
 	filename, _ := in.ReadString('\n')
 	filename = strings.TrimSpace(filename)
 
+	if !strings.Contains(filename, ".") {
+		filename = filename + ".txt"
+	}
+
 	// fmt.Print("Enter content to add: ")
 	// data, _ :=in.ReadString('\n')
 	data := "Sentence 1\nSentence 2\nSentence 3\nSentence 4\nSentence chama 5\nSentence 6"
