@@ -6,8 +6,25 @@ import (
 )
 
 func main() {
-	fmt.Println("Game Started. Random value generated between 0 - 10.")
-	randVal := rand.Intn(10)
+	fmt.Println("Game Started....")
+	startVal, endVal, gap := 0, 0, 0
+
+	for !(gap > 0) {
+		fmt.Println("\nEnter the range to generate random number...")
+		fmt.Print("\nStarting value: ")
+		fmt.Scan(&startVal)
+		fmt.Print("Ending value: ")
+		fmt.Scan(&endVal)
+
+		fmt.Printf("\nstart val %d. end val %d \n", startVal, endVal)
+		gap = endVal - startVal
+		if gap <= 0 {
+			fmt.Println("\nEnd Value should greater than Starting value")
+		}
+	}
+
+	// random val between the start value and end value
+	randVal := rand.Intn(gap) + startVal
 
 	answer, count := -5, 0
 
