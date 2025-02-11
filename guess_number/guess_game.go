@@ -25,12 +25,13 @@ func main() {
 
 	// random val between the start value and end value
 	randVal := rand.Intn(gap) + startVal
+	// fmt.Printf("\n************** Random value %d: **************\n", randVal)
 
-	answer, count := -5, 0
+	answer, count, mid := -5, 0, 0
 
 	for answer != randVal {
 		count++
-		fmt.Print("\nEnter value between 1 - 10: ")
+		fmt.Printf("\nEnter value between %d - %d: ", startVal, endVal)
 		fmt.Scan(&answer)
 
 		if answer != randVal {
@@ -39,15 +40,21 @@ func main() {
 			fmt.Println("\nCorrect")
 		}
 
+		mid = (startVal + endVal) / 2
+
 		if count%3 == 0 {
-			mid := randVal / 2
 			if answer != randVal {
 				if randVal > mid {
+					startVal = mid
 					fmt.Printf("Random value greater than %d", mid)
 				} else {
+					endVal = mid
 					fmt.Printf("Random value less than %d", mid)
 				}
 			}
+			gap = endVal - startVal
 		}
+
+		fmt.Printf("\ngap %d. start val %d. end val %d. mid %d. count %d", gap, startVal, endVal, mid, count)
 	}
 }
