@@ -2,49 +2,55 @@ package main
 
 import (
 	"fmt"
+	"loan_calculator/dto"
+	"loan_calculator/functions"
+	"strings"
 )
 
-var interest = map[int]int{
-	1: 110,
-	2: 108,
-	3: 105,
-}
-
 func main() {
+
+	fmt.Print("Enter the Name: ")
+	var name string
+	fmt.Scan(&name)
+
 	fmt.Print("Enter the amount: ")
-	var amount float32
+	var amount float64
 	fmt.Scan(&amount)
 
-	fmt.Print("Enter the Months: ")
+	fmt.Print("Enter months: ")
 	var months int
 	fmt.Scan(&months)
 
-	pLoan := calculateLoan(amount, months)
-	fmt.Printf("\nFinal amount:  %.2f", pLoan)
-}
+	fmt.Print("Enter loan type: ")
+	var loanType string
+	fmt.Scan(&loanType)
 
-func calculateLoan(amount float32, months int) float32 {
+	fmt.Print("Employeed? Yes or No: ")
+	var isEmployeed string
+	fmt.Scan(&isEmployeed)
 
-	var val int
-	if months < 12 {
-		val = 1
-	} else if months < 24 {
-		val = 2
+	fmt.Print("Enter Repayment Period: ")
+	var repaymentPeriod string
+	fmt.Scan(&repaymentPeriod)
+
+	var isSafe bool
+	if strings.ToLower(isEmployeed) == "yes" {
+		isSafe = true
 	} else {
-		val = 3
+		isSafe = false
 	}
 
-	return amount * float32(months) * (float32(interest[val]) / 100)
+	userData := dto.UserData{
+		Name:            name,
+		Amount:          amount,
+		IsSafe:          isSafe,
+		RepaymentPeriod: repaymentPeriod,
+		Months:          months,
+		LoanType:        loanType,
+	}
+
+	// fmt.Println(userData)
+
+	functions.CalculateLoan(userData)
+
 }
-
-// commits := map[string]int{
-//     "rsc": 3711,
-//     "r":   2138,
-//     "gri": 1908,
-//     "adg": 912,
-// }
-
-// var interest map[int]int
-// interest = make(map[int]int)
-// interest[6] = 10
-// interest[12] = 20
