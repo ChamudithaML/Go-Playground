@@ -7,11 +7,10 @@ import (
 
 func CalculateLoan(userData dto.UserData) {
 
-	fmt.Println(userData)
-
 	rateforAmount := calRateForAmount(userData.Amount)
+	rateForTerm := calRateForTerm(userData.RepaymentPeriod)
 
-	fmt.Println(rateforAmount)
+	fmt.Println(rateforAmount, rateForTerm)
 
 }
 
@@ -27,4 +26,14 @@ func calRateForAmount(amount float64) float64 {
 		rate = 5
 	}
 	return rate
+}
+
+func calRateForTerm(term string) float64 {
+	if term == "long-term" {
+		return 5
+	} else if term == "mid-term" {
+		return 3
+	} else {
+		return 2.5
+	}
 }
