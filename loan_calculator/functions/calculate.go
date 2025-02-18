@@ -6,6 +6,15 @@ import (
 )
 
 func CalculateLoan(userData dto.UserData) {
+	var loan dto.Loan
+
+	if userData.IsSafe {
+		loan.IsSafe = true
+	} else {
+		loan.IsSafe = false
+		SecureLoan(userData)
+
+	}
 
 	rateforAmount := calRateForAmount(userData.Amount)
 	rateForTerm := calRateForTerm(userData.RepaymentPeriod)
