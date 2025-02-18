@@ -29,15 +29,26 @@ func main() {
 	var isEmployeed string
 	fmt.Scan(&isEmployeed)
 
-	fmt.Print("Enter Repayment Period: ")
-	var repaymentPeriod string
-	fmt.Scan(&repaymentPeriod)
+	fmt.Print("\nProcessing...\n")
+
+	// fmt.Print("Enter Repayment Period: ")
+	// var repaymentPeriod string
+	// fmt.Scan(&repaymentPeriod)
 
 	var isSafe bool
 	if strings.ToLower(isEmployeed) == "yes" {
 		isSafe = true
 	} else {
 		isSafe = false
+	}
+
+	var repaymentPeriod string
+	if months > 60 {
+		repaymentPeriod = "long-term"
+	} else if months > 24 {
+		repaymentPeriod = "mid-term"
+	} else {
+		repaymentPeriod = "short-term"
 	}
 
 	userData := dto.UserData{
@@ -49,8 +60,5 @@ func main() {
 		LoanType:        loanType,
 	}
 
-	// fmt.Println(userData)
-
 	functions.CalculateLoan(userData)
-
 }
